@@ -26,4 +26,8 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 
 ## Info
 
+for migrations please run (php artisan migrate) after setup .env files
+
+I have used console commnd for creating artisan command so you can use either artisan command(php artisan insert:coin) or run api in localhost (for insert data in db and fetch api data).
+
 I have implemented console lumen command that will fetch and insert data of api after everyminute if you run php artisan insert:coin
