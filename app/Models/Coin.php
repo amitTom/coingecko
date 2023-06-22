@@ -12,6 +12,6 @@ class Coin extends Model
         'coin_id',
         'symbol',
         'name',
-        
+        'platforms',
     ];
 }

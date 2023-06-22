@@ -20,21 +20,23 @@ class CoinController extends Controller
         /*
         this function is used for retrieving coin list and insert in to mysql
         */
-        $response = Http::get('https://api.coingecko.com/api/v3/coins/list'
+        $response = Http::get('https://api.coingecko.com/api/v3/coins/list?include_platform=true'
         );
-        $data = json_decode($response->body());
+        $data = json_decode($response->getBody()->getContents(),true);
         // dd($data);
         /*
         check record is exist if exist then update otherwise create
         */
         foreach ($data as $coin_datas) {
-          $coin_datas = (array)$coin_datas;
+          // $coin_datas = (array)$coin_datas;
           Coin::updateOrCreate(
             ['coin_id' => $coin_datas['id']],
             [
               'coin_id' => $coin_datas['id'],
               'symbol' => $coin_datas['symbol'],
-              'name' => $coin_datas['name']  
+              'name' => $coin_datas['name'],
+              'platforms'=>json_encode($coin_datas['platforms']),
+
             ]
 
           );
